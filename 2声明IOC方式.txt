@@ -1,0 +1,11 @@
+1， applicationContext.xml 声明bean
+	<bean id="persion" class="bean.Persion">
+		<property name="id" value="1"></property>
+		<property name="name" value="zs"></property>
+	</bean>
+
+2， 注解形式声明
+a. 类的上方  @Component("id")  | @Service("id")  
+b. applicationContext.xml 增加扫描器   
+	<context: component-scan base-package="包名"> 
+	

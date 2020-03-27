@@ -1,0 +1,12 @@
+1, 下载sts3
+2, 创建 spring bean configuration File （名称为applicationContext.xml）
+3, 编写Persion类
+4, applicationContext.xml 中 使用IOC
+<bean id="persion" class="bean.Persion">
+	<property name="id" value="1"></property>
+	<property name="name" value="zs"></property>
+</bean>
+5, 使用IOC
+ApplicationContext context = new ClassPathXmlApplicationContext("applicationContext.xml");
+Persion persion = (Persion)context.getBean("persion");
+System.out.println(persion.getName());

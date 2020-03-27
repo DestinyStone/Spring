@@ -1,0 +1,45 @@
+一， 注入方式
+a. set方式注入 (常用)
+	<property name="name" value="zs"></property>
+b. 构造方式注入
+	<constructor-arg value="1"></constructor-arg> 
+	<constructor-arg value="zs"></constructor-arg>      //必须与构造方法顺序一致   可使用 index=“0|1”  或使用 name="" 指定
+c. 命名空间注入
+
+d. 基于注解的注入
+	@Autowired  自动装配， 会在bean池中需要与对象类型类似的id
+	@Qualifier("stuDao")     根据名称装配  注意使用时要搭配@Qualifier 一起使用
+	@Value("10")   注入基本类型数值
+
+二， 不同类型的注入
+1， 简单类型
+<property name="name" value="zs"></property>
+
+2, 数组
+<property name="name">
+	<array>
+		<value></value>
+		<value></value>
+	<array>
+</property>
+
+2, list
+<property name="name">
+	<list>
+		<value></value>
+		<value></value>
+	</list>
+</property>
+
+3, map
+<property name="name">
+	<map>
+		<entry>
+			<key><value></value></key>
+			<value></value>
+		</entry>
+	<map>
+</property>
+
+4， 对象类型
+<property name="name" ref="另一个bean的id"></property>
