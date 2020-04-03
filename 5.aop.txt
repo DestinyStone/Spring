@@ -1,0 +1,51 @@
+名词
+1， 切点，  位于那个方法经行aop操作， 该方法便是切点
+2， 切面， 多个切点的集合
+3， 通知，  在该方法前还是方法后经行操作
+
+1， 创建一个通知类，增加注解 @Aspect, @Component
+2,   加入扫描包
+3， 写一个方法 增加注解 @Before()
+4， 开启注解 aop的支持
+<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+
+一， 通知
+@Before  前置通知
+@After 后置通知
+@AfterReturning 返回通知， 与后置通知区别(返回通知会在目标成功返回才会通知， 而After是目标调用完才会通知
+			即， 如果方法发生异常， After会执行， 而AfterReturning不会执行)
+@AfterThrowing  异常通知
+@Around  环绕通知
+
+二， execution 表达式
+“execution(public * addStudent(..))”
+ * 代表任意返回值
+ addStudent 代表任意类的调用方法名， 也可使用 service.PersionService.addStudent() 来进行限制
+ .. 代表任意参数
+
+
+
+三, 获取调用该方法的各种数值
+a.除环绕通知外的其他通知
+	1， 在aop方法中的参数列表声明 JoinPoint jp
+	2,   JoinPoint 的各种方法
+	  getTarget()  获取调用方法的对象
+ 	 getSignature().getName()  获取方法名  .getDeclaringTypeName()  获取全方法民
+ 	 getArgs()  获取参数列表
+ 
+
+	获取返回值   @AfterReturning
+	1,  在注解声明中 声明  pointcut="exe....", returning="returningValue"
+	2,  参数列表声明object returningValue
+
+b. 环绕通知
+	1，使用对象 ProceedingJoinPoint
+	2，
+ try {
+            System.out.println("观众的手机静音");
+            System.out.println("观众落座");
+            jp.proceed();              //该方法前为前置通知，后为环绕通知
+            System.out.println("掌声雷动");
+}catch (Throwable e) {         // 注意 这里不是 Explain
+            System.out.println("退票退票");         //这里为异常通知
+ }
